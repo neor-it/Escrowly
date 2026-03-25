@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import type { OfferViewModel } from '../../types/escrow'
-import { formatAmount, getTokenSymbol } from '../../utils/tokenUtils'
+import { formatAmount, formatFullAmount, getTokenSymbol } from '../../utils/tokenUtils'
 
 type OpenOffersPanelProps = {
   offers: OfferViewModel[]
@@ -140,7 +140,7 @@ export function OpenOffersPanel({
                     <div className="flex-1 bg-white/5 p-4 rounded-[24px] border border-white/5 flex flex-col justify-between gap-3">
                       <span className="block text-[8px] font-bold text-zinc-500 uppercase tracking-[0.2em]">You Give</span>
                       <div className="flex flex-col gap-1 overflow-hidden">
-                          <span className="text-lg font-black tracking-tight text-white truncate" title={formatAmount(offer.requiredAmount)}>
+                          <span className="text-lg font-black tracking-tight text-white truncate" title={formatFullAmount(offer.requiredAmount)}>
                             {formatAmount(offer.requiredAmount)}
                           </span>
                           <a 
@@ -161,7 +161,7 @@ export function OpenOffersPanel({
                     <div className="flex-1 bg-emerald-500/5 p-4 rounded-[24px] border border-emerald-500/10 flex flex-col justify-between gap-3">
                       <span className="block text-[8px] font-bold text-emerald-500/60 uppercase tracking-[0.2em]">You Get</span>
                       <div className="flex flex-col gap-1 overflow-hidden">
-                          <span className="text-lg font-black tracking-tight text-emerald-400 truncate" title={formatAmount(offer.offeredAmount)}>
+                          <span className="text-lg font-black tracking-tight text-emerald-400 truncate" title={formatFullAmount(offer.offeredAmount)}>
                             {formatAmount(offer.offeredAmount)}
                           </span>
                           <a 

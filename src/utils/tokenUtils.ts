@@ -31,11 +31,32 @@ export function formatAmount(amount: string | number | bigint, decimals: number 
               typeof amount === 'string' ? parseFloat(amount) : amount;
   
   if (isNaN(val)) return '0';
+  if (val === 0) return '0';
+  
+  // If amount is positive but smaller than our display threshold
+  if (val > 0 && val < 0.000001) {
+    return '< 0.000001';
+  }
   
   return new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 6,
     useGrouping: true,
   }).format(val);
+}
+
+/**
+ * Returns the full amount as a string without threshold for tooltip.
+ */
+export function formatFullAmount(amount: string | number | bigint, decimals: number = 9): string {
+  const val = typeof amount === 'bigint' ? Number(amount) / (10 ** decimals) : 
+              typeof amount === 'string' ? parseFloat(amount) : amount;
+  
+  if (isNaN(val)) return '0';
+  
+  return val.toLocaleString('en-US', {
+    maximumFractionDigits: 20, // High precision
+    useGrouping: false,
+  });
 }
 
 /**
