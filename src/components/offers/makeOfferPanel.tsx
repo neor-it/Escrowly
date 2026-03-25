@@ -57,7 +57,7 @@ export function MakeOfferPanel({
 
 
   return (
-    <div className="space-y-2 pt-1 sm:pt-1.5">
+    <div className="space-y-1 pt-0.5 sm:pt-1">
       {/* Mode Indicator */}
       <div className="flex items-center justify-between px-1 mb-1">
         <div className="flex items-center gap-1.5">
@@ -77,7 +77,7 @@ export function MakeOfferPanel({
 
       {/* You Pay Section */}
       <div className="peer-input-container transition-all">
-        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-1.5 transition-colors ${!isWalletConnected ? 'text-zinc-600' : 'text-zinc-400'}`}>
+        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${!isWalletConnected ? 'text-zinc-600' : 'text-zinc-400'}`}>
           You Deposit
         </label>
         <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export function MakeOfferPanel({
         </div>
 
         {isWalletConnected && selectedTokenAccount && (
-          <div className="flex items-center gap-1.5 mt-3 animate-in fade-in slide-in-from-top-1 duration-300">
+          <div className="flex items-center gap-1.5 mt-1.5 animate-in fade-in slide-in-from-top-1 duration-300">
             {[25, 50, 75, 100].map((pc) => (
               <button
                 key={pc}
@@ -140,11 +140,11 @@ export function MakeOfferPanel({
 
       {/* You Receive Section */}
       <div className="peer-input-container transition-all">
-        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-1.5 transition-colors ${!isWalletConnected ? 'text-zinc-600' : 'text-zinc-400'}`}>
+        <label className={`block text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${!isWalletConnected ? 'text-zinc-600' : 'text-zinc-400'}`}>
           You Receive
         </label>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
           <input
             className={`peer-amount-input w-full text-4xl sm:text-5xl transition-opacity font-bold placeholder:text-zinc-800 focus:outline-none bg-transparent ${!isWalletConnected ? 'text-zinc-700/50' : 'text-white'}`}
             type="number"
@@ -156,7 +156,7 @@ export function MakeOfferPanel({
           <div className="space-y-1.5">
             <div className="relative">
               <input
-                className={`w-full border rounded-2xl px-4 pr-12 py-3 text-[11px] font-mono transition-all focus:outline-none ${!isWalletConnected
+                className={`w-full border rounded-2xl px-4 pr-12 py-2.5 text-[11px] font-mono transition-all focus:outline-none ${!isWalletConnected
                   ? 'bg-zinc-800/40 border-white/10 text-zinc-500 cursor-not-allowed'
                   : tokenBMintAddress.length === 0
                     ? 'bg-zinc-900 border-white/5 text-white placeholder:text-zinc-700 focus:border-white/20'
@@ -182,7 +182,7 @@ export function MakeOfferPanel({
             </div>
 
             {/* Validity Text close to the input - reserved space to prevent layout shift */}
-            <div className="h-3.5">
+            <div className="h-3">
               {tokenBMintAddress.length > 0 && (
                 <div className={`text-[9px] font-bold uppercase tracking-widest px-1 animate-in fade-in slide-in-from-top-1 duration-300 ${isAddressValid(tokenBMintAddress) ? 'text-emerald-500/80' : 'text-red-500/80'}`}>
                   {isAddressValid(tokenBMintAddress) ? '✓ Valid Token Address' : '✕ Invalid Token Address'}
@@ -207,15 +207,13 @@ export function MakeOfferPanel({
           Connect Wallet to Trade
         </button>
       ) : (
-        <div className="space-y-4">
           <button
             onClick={() => void onSubmit()}
             disabled={!canSubmit}
-            className="w-full sm:mt-3 mt-2 bg-white text-black h-14 flex items-center justify-center rounded-[20px] font-black uppercase tracking-[0.15em] text-[11px] hover:bg-zinc-100 transition-all active:scale-[0.97] disabled:opacity-30 disabled:cursor-not-allowed shadow-[0_12px_44px_rgba(255,255,255,0.12)]"
+            className="w-full sm:mt-2 mt-1.5 bg-white text-black h-12 flex items-center justify-center rounded-[20px] font-black uppercase tracking-[0.15em] text-[11px] hover:bg-zinc-100 transition-all active:scale-[0.97] disabled:opacity-30 disabled:cursor-not-allowed shadow-[0_12px_44px_rgba(255,255,255,0.12)]"
           >
             {isSubmitting ? 'Securing in Vault...' : 'Create Swap Offer'}
           </button>
-        </div>
       )}
     </div>
   )
