@@ -337,7 +337,8 @@ function App() {
         })
       }
 
-      await refreshOffers()
+      // Trigger refetch for both logic and balances
+      await Promise.all([refreshOffers(), refreshTokenAccounts()]);
     } finally {
       setIsMakeOfferSubmitting(false)
     }
@@ -390,6 +391,9 @@ function App() {
         }
 
         if (takeOfferResult.transaction) {
+          // Optimistically remove the taken offer from the list
+          setOffers((prevOffers) => prevOffers.filter(o => o.offerAddress !== offerAddress));
+          
           setLatestTransaction(takeOfferResult.transaction)
           setTransactionProgress({
             phase: 'success',
@@ -413,7 +417,8 @@ function App() {
           })
         }
 
-        await refreshOffers()
+        // Trigger refetch for both logic and balances
+        await Promise.all([refreshOffers(), refreshTokenAccounts()]);
       } finally {
         setIsTakeOfferSubmitting(false)
       }

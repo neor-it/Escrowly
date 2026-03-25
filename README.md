@@ -23,7 +23,7 @@ A premium, high-performance escrow interface for Solana Devnet, built with **@so
 
 1. **Clone the repository**:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/neor-it/Escrowly.git
    cd Escrowly
    ```
 
