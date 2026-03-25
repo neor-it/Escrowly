@@ -106,6 +106,27 @@ export function MakeOfferPanel({
             )}
           </div>
         </div>
+
+        {isWalletConnected && selectedTokenAccount && (
+          <div className="flex items-center gap-1.5 mt-3 animate-in fade-in slide-in-from-top-1 duration-300">
+            {[25, 50, 75, 100].map((pc) => (
+              <button
+                key={pc}
+                type="button"
+                onClick={() => {
+                  const balance = parseFloat(selectedTokenAccount.amountUi);
+                  if (isNaN(balance)) return;
+                  const val = pc === 100 ? balance : (balance * pc) / 100;
+                  // Format to avoid too many decimals if needed, but simple toString for now
+                  onTokenAAmountUiChange(val.toString());
+                }}
+                className="text-[9px] font-black bg-white/5 border border-white/5 text-zinc-500 px-2.5 py-1 rounded-lg hover:bg-white/10 hover:text-white transition-all uppercase tracking-tighter"
+              >
+                {pc === 100 ? 'MAX' : `${pc}%`}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="relative h-2 flex items-center justify-center -my-2">
